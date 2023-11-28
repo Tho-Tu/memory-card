@@ -1,0 +1,7 @@
+@import url("../index.css");
+
+header {
+  background-color: var(--clr-secondary);
+  text-align: center;
+  padding: 1.8rem;
+}

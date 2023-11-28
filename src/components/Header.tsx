@@ -1,5 +1,9 @@
 import "../styles/header.css";
 
 export default function Header() {
-  return <header>Memory Game</header>;
+  return (
+    <header>
+      <h1>Memory Game</h1>
+    </header>
+  );
 }
