@@ -10,8 +10,9 @@ export const pokemonList = [
   { id: 3, name: "squirtle" },
   { id: 4, name: "caterpie" },
   { id: 5, name: "totodile" },
-  { id: 7, name: "cyndaquil" },
-  { id: 8, name: "chikorita" },
+  { id: 6, name: "cyndaquil" },
+  { id: 7, name: "chikorita" },
+  { id: 8, name: "taillow" },
 ];
 
 export function shuffle(array: PokemonObject[]) {

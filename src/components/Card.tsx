@@ -1,20 +1,30 @@
-// import { useState } from "react";
-// import "../styles/card.css";
+import { useState, useEffect } from "react";
+import "../styles/card.css";
 
-// function Card({ pokemonName }) {
-//   const cardImage = fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`, {
-//     mode: "cors",
-//   });
-//   return (
-//     <button>
-//       <img src={cardImage}></img>
-//       <div>{text}</div>
-//     </button>
-//   );
-// }
+type cardProps = {
+  pokemonName: string;
+  handleAddScore: () => void;
+};
 
-// export default Card;
+export default function Card({ pokemonName, handleAddScore }: cardProps) {
+  const [cardImage, setCardImage] = useState("");
 
-// async function getPokemonSprite(pokemonName) {
-//     const pokemon = await
-// }
+  useEffect(() => {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`, {
+      mode: "cors",
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setCardImage(data.sprites.other["official-artwork"]["front_default"]);
+      });
+  }, [pokemonName]);
+
+  return (
+    <button type="button" onClick={handleAddScore}>
+      <img src={cardImage}></img>
+      <div>{pokemonName}</div>
+    </button>
+  );
+}
