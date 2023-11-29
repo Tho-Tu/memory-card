@@ -3,6 +3,7 @@
 img {
   width: 180px;
   height: auto;
+  pointer-events: none;
 }
 
 button {

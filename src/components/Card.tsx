@@ -4,9 +4,14 @@ import "../styles/card.css";
 type cardProps = {
   pokemonName: string;
   handleAddScore: () => void;
+  handleEndGame: () => void;
 };
 
-export default function Card({ pokemonName, handleAddScore }: cardProps) {
+export default function Card({
+  pokemonName,
+  handleAddScore,
+  handleEndGame,
+}: cardProps) {
   const [cardImage, setCardImage] = useState("");
 
   useEffect(() => {
@@ -22,7 +27,13 @@ export default function Card({ pokemonName, handleAddScore }: cardProps) {
   }, [pokemonName]);
 
   return (
-    <button type="button" onClick={handleAddScore}>
+    <button
+      type="button"
+      onClick={() => {
+        handleAddScore();
+        handleEndGame();
+      }}
+    >
       <img src={cardImage}></img>
       <div>{pokemonName}</div>
     </button>
