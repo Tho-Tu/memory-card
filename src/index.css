@@ -10,14 +10,15 @@
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 :root {
   --clr-text: #000000;
-  --clr-surface: #fffafa;
-  --clr-primary: #e27573;
-  --clr-secondary: #f5cdcc;
-  --clr-accent: #cb2c2a;
+  --clr-surface: #e0e7ff;
+  --clr-primary: #4338ca;
+  --clr-secondary: #8b5cf6;
+  --clr-accent: #312e81;
 
   --ff-base: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
@@ -37,6 +38,12 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 img {
@@ -59,37 +66,10 @@ body {
   background-color: var(--clr-surface);
   color: var(--clr-text);
   line-height: 1.6;
+  min-height: 100vh;
 }
 
 h1 {
   font-size: var(--fs-600);
   line-height: 1.1;
-}
-
-button {
-  display: inline-block;
-  outline: 0;
-  text-align: center;
-  cursor: pointer;
-  width: fit-content;
-  border-radius: 4px;
-  border: 0 transparent;
-  padding: 0.8rem 1.8rem;
-  font-size: var(--fs-200);
-  font-family: var(--ff-base);
-  background-color: var(--clr-accent);
-  color: var(--clr-surface);
-  margin: 8px 0;
-}
-
-button:hover {
-  background-color: var(--clr-primary);
-}
-
-button:active {
-  transform: translateY(2px);
-}
-
-button:focus-visible {
-  outline: 2px solid var(--clr-text);
 }

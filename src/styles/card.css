@@ -1,0 +1,36 @@
+@import url("../App.css");
+
+img {
+  width: 180px;
+  height: auto;
+}
+
+button {
+  display: inline-block;
+  outline: 0;
+  text-align: center;
+  cursor: pointer;
+  width: fit-content;
+  border-radius: 12px;
+  border: 0 transparent;
+  padding: 0.8rem 1.8rem;
+  font-size: var(--fs-200);
+  font-family: var(--ff-base);
+  background-color: whitesmoke;
+  color: var(--clr-text);
+  font-size: var(--fs-300);
+  font-weight: bold;
+  transition: background-color 0.25s ease-out 0s;
+}
+
+button:hover {
+  background-color: rgb(155, 207, 255);
+}
+
+button:active {
+  transform: translateY(2px);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--clr-text);
+}

@@ -1,7 +1,9 @@
-@import url("../index.css");
+@import url("../App.css");
 
 header {
   background-color: var(--clr-secondary);
+  color: var(--clr-surface);
   text-align: center;
   padding: 1.8rem;
+  box-shadow: 4px 4px 12px var(--clr-primary);
 }

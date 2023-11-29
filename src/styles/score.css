@@ -1,0 +1,9 @@
+@import url("../App.css");
+
+.score {
+  padding: 1.8rem 0;
+  color: var(--clr-surface);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

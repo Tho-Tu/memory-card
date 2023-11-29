@@ -17,15 +17,16 @@ export default function Game() {
 
   return (
     <div className="content">
-      <h2>Don't click the same pokemon twice!</h2>
-      <Score score={score} bestScore={bestScore} />;
-      {pokemonList.map((pokemon) => (
-        <Card
-          key={pokemon.id}
-          pokemonName={pokemon.name}
-          handleAddScore={handleAddScore}
-        />
-      ))}
+      <Score score={score} bestScore={bestScore} />
+      <div className="card-list">
+        {pokemonList.map((pokemon) => (
+          <Card
+            key={pokemon.id}
+            pokemonName={pokemon.name}
+            handleAddScore={handleAddScore}
+          />
+        ))}
+      </div>
     </div>
   );
 }
