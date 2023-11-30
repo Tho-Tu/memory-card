@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/game.css";
 import { pokemonList, shuffle } from "../assets/cardList";
 import Card from "./Card";
@@ -8,24 +8,32 @@ import Score from "./Score";
 export default function Game() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
-  const [indexTracker, setIndexTracker] = useState([]);
+  const [indexTracker, setIndexTracker] = useState<number[]>([]);
   const [endGame, setEndGame] = useState(false);
 
   const handleAddScore = () => {
-    score !== pokemonList.length && setScore((prevScore) => prevScore + 1);
+    setScore((prevScore) => prevScore + 1);
   };
 
   const handleResetScore = () => setScore(0);
 
-  const handleBestScore = () => setBestScore(score);
+  const handleBestScore = (score: number) => setBestScore(score);
 
-  const handleIndexTracker = (index) => {
-    setIndexTracker((prevList) => prevList);
+  const handleIndexTracker = (index: number) => {
+    setIndexTracker((prevList) => [...prevList, index]);
+    console.log(indexTracker);
   };
 
-  const handleEndGame = () => {
-    score === pokemonList.length ? setEndGame(true) : setEndGame(false);
+  const handleEndGame = (boolean: boolean) => {
+    setEndGame(boolean);
   };
+
+  // end game logic
+  useEffect(() => {
+    if (score >= pokemonList.length) {
+      setEndGame(true);
+    }
+  }, [score]);
 
   return (
     <div className="content">
@@ -35,14 +43,16 @@ export default function Game() {
         endGame={endGame}
         handleResetScore={handleResetScore}
         handleBestScore={handleBestScore}
+        handleEndGame={handleEndGame}
       />
       <div className="card-list">
         {pokemonList.map((pokemon) => (
           <Card
             key={pokemon.id}
+            index={pokemon.id}
             pokemonName={pokemon.name}
             handleAddScore={handleAddScore}
-            handleEndGame={handleEndGame}
+            handleIndexTracker={handleIndexTracker}
           />
         ))}
       </div>

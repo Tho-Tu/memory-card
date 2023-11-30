@@ -3,14 +3,16 @@ import "../styles/card.css";
 
 type cardProps = {
   pokemonName: string;
+  index: number;
   handleAddScore: () => void;
-  handleEndGame: () => void;
+  handleIndexTracker: (index: number) => void;
 };
 
 export default function Card({
   pokemonName,
+  index,
   handleAddScore,
-  handleEndGame,
+  handleIndexTracker,
 }: cardProps) {
   const [cardImage, setCardImage] = useState("");
 
@@ -30,8 +32,8 @@ export default function Card({
     <button
       type="button"
       onClick={() => {
+        handleIndexTracker(index);
         handleAddScore();
-        handleEndGame();
       }}
     >
       <img src={cardImage}></img>

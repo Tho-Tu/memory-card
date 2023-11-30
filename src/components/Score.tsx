@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "../styles/score.css";
 
 type scoreProps = {
@@ -5,8 +6,8 @@ type scoreProps = {
   bestScore: number;
   endGame: boolean;
   handleResetScore: () => void;
-  handleBestScore: () => void;
-  handleEndGame: () => void;
+  handleBestScore: (score: number) => void;
+  handleEndGame: (boolean: boolean) => void;
 };
 
 export default function Score({
@@ -17,6 +18,11 @@ export default function Score({
   handleBestScore,
   handleEndGame,
 }: scoreProps) {
+  useEffect(() => {
+    if (endGame && score > bestScore) {
+      handleBestScore(score);
+    }
+  }, [endGame]);
   return (
     <>
       <div className="score">
@@ -28,9 +34,8 @@ export default function Score({
         {endGame && (
           <button
             onClick={() => {
-              endGame = false;
               handleResetScore();
-              handleEndGame();
+              handleEndGame(false);
             }}
           >
             Play again?
