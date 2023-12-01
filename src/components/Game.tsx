@@ -8,7 +8,9 @@ import Score from "./Score";
 export default function Game() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
-  const [indexTracker, setIndexTracker] = useState<number[]>([]);
+  const [indexTracker, setIndexTracker] = useState<number[]>([
+    ...Array(pokemonList.length).keys(),
+  ]);
   const [endGame, setEndGame] = useState(false);
 
   const handleAddScore = () => {
@@ -19,8 +21,10 @@ export default function Game() {
 
   const handleBestScore = (score: number) => setBestScore(score);
 
-  const handleIndexTracker = (index: number) => {
-    setIndexTracker((prevList) => [...prevList, index]);
+  // indexTracker methods
+  const handleIndexTracker = (deleteIndex: number) => {
+    const update = indexTracker.filter((index) => index !== deleteIndex);
+    setIndexTracker(update);
     console.log(indexTracker);
   };
 
