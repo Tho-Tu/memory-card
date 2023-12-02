@@ -12,20 +12,30 @@ export default function Game() {
     ...Array(pokemonList.length).keys(),
   ]);
   const [endGame, setEndGame] = useState(false);
+  const [randomPokemonList, setRandomPokemonList] = useState(pokemonList);
 
   const handleAddScore = () => {
-    setScore((prevScore) => prevScore + 1);
+    if (!endGame && score < pokemonList.length) {
+      setScore((prevScore) => prevScore + 1);
+    }
   };
 
   const handleResetScore = () => setScore(0);
 
-  const handleBestScore = (score: number) => setBestScore(score);
+  const handleBestScore = () => {
+    if (score > bestScore) {
+      setBestScore(score);
+    }
+  };
 
   // indexTracker methods
   const handleIndexTracker = (deleteIndex: number) => {
     const update = indexTracker.filter((index) => index !== deleteIndex);
     setIndexTracker(update);
-    console.log(indexTracker);
+  };
+
+  const handleResetIndexTracker = () => {
+    setIndexTracker([...Array(pokemonList.length).keys()]);
   };
 
   const handleEndGame = (boolean: boolean) => {
@@ -34,10 +44,28 @@ export default function Game() {
 
   // end game logic
   useEffect(() => {
-    if (score >= pokemonList.length) {
-      setEndGame(true);
+    let ignore = false;
+    if (!ignore) {
+      if (score >= pokemonList.length) {
+        setEndGame(true);
+      }
     }
-  }, [score]);
+    return () => {
+      ignore = true;
+    };
+  }, [score, bestScore]);
+
+  // randomly shuffles list when score state changes
+  useEffect(() => {
+    let ignore = false;
+    if (!ignore && !endGame) {
+      const randomOrder = shuffle(pokemonList);
+      setRandomPokemonList(randomOrder);
+    }
+    return () => {
+      ignore = true;
+    };
+  }, [score, endGame]);
 
   return (
     <div className="content">
@@ -46,17 +74,20 @@ export default function Game() {
         bestScore={bestScore}
         endGame={endGame}
         handleResetScore={handleResetScore}
-        handleBestScore={handleBestScore}
         handleEndGame={handleEndGame}
+        handleResetIndexTracker={handleResetIndexTracker}
+        handleBestScore={handleBestScore}
       />
       <div className="card-list">
-        {pokemonList.map((pokemon) => (
+        {randomPokemonList.map((pokemon) => (
           <Card
             key={pokemon.id}
             index={pokemon.id}
             pokemonName={pokemon.name}
+            indexTracker={indexTracker}
             handleAddScore={handleAddScore}
             handleIndexTracker={handleIndexTracker}
+            handleEndGame={handleEndGame}
           />
         ))}
       </div>
