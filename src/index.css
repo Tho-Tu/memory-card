@@ -63,7 +63,7 @@ a:hover {
 body {
   font-family: var(--ff-base);
   font-size: var(--fs-200);
-  background-color: var(--clr-surface);
+  background-color: var(--clr-accent);
   color: var(--clr-text);
   line-height: 1.6;
   min-height: 100vh;
