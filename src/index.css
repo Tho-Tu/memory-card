@@ -67,7 +67,7 @@ body {
   color: var(--clr-text);
   line-height: 1.6;
   min-height: 100vh;
-  background-image: url("fantasy.jpg");
+  background-image: url("/fantasy.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
