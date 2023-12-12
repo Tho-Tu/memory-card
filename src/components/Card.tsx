@@ -37,9 +37,10 @@ export default function Card({
       type="button"
       onClick={() => {
         handleIndexTracker(index);
-        handleAddScore();
         if (!indexTracker.includes(index)) {
           handleEndGame(true);
+        } else {
+          handleAddScore();
         }
       }}
     >
